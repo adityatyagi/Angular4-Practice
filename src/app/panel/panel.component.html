@@ -1,0 +1,20 @@
+<!--CREATING REUSEABLE COMPONENTS-->
+<div class="card text-center">
+    <div class="card-header">
+        <ng-content select=".cardHeader"></ng-content>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            <ng-content select=".cardTitle"></ng-content>
+        </h5>
+        <p class="card-text">
+            <ng-content select=".cardText"></ng-content>
+        </p>
+        <a href="#" class="btn btn-primary">
+            <ng-content select=".buttonSelect"></ng-content>
+        </a>
+    </div>
+    <div class="card-footer text-muted">
+        <ng-content select=".cardFooter"></ng-content>
+    </div>
+</div>
