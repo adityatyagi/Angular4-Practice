@@ -1,6 +1,9 @@
 <div class="row">
     <div class="col-md-4" style="text-align: center">
         <h3 (click)="onClick()">{{ text }}</h3>
-        <span (click)="onClick()" class="glyphicon" [class.glyphicon-star]="isSelected" [class.glyphicon-star-empty]="!isSelected" style="font-size: 50px;"></span>
+        <span (click)="onClick()" class="glyphicon" [class.glyphicon-star]="isSelected" [class.glyphicon-star-empty]="!isSelected" [ngClass]="{
+            'glyphicon-star': isSelected,
+            'glyphicon-star-empty': !isSelected
+        }" style="font-size: 50px;"></span>
     </div>
 </div>

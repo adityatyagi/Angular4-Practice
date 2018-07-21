@@ -12,3 +12,89 @@
     <div class="cardFooter">Footer this is</div>
 
 </bootstrap-panel>
+
+<!--Directives-->
+
+<!--ngIf-->
+<div *ngIf="courses.length > 0; then coursesList else noCourses">
+    List of Courses
+</div>
+<ng-template #coursesList>
+    List of courses.
+</ng-template>
+<ng-template #noCourses>
+    there are no courses.
+</ng-template>
+
+<!-- hidden -->
+<div hidden [hidden]="courses.length == 0">
+    This is div 1
+</div>
+<div [hidden]="courses.length > 0">
+    thsi is div 2
+</div>
+
+<br/>
+<br/>
+<br/>
+<!-- ngSwitchCase - implementing pills -->
+<ul class="nav nav-pills nav-fill">
+    <li class="nav-item"><a class="nav-link" [class.active]="viewMode == 'map'" (click)="viewMode= 'map'">Map View</a></li>
+    <li class="nav-item"><a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode= 'list'">List View</a></li>
+    <li class="nav-item"><a class="nav-link" [class.active]="viewMode == 'sample'" (click)="viewMode= 'sample'">Sample View</a></li>
+    <li class="nav-item"><a class="nav-link" [class.active]="viewMode == 'text'" (click)="viewMode= 'text'">Text View</a></li>
+</ul>
+
+<div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'map'">Map View Content</div>
+    <div *ngSwitchCase="'list'">List View Content</div>
+    <div *ngSwitchCase="'sample'">Sample View Content</div>
+    <div *ngSwitchCase="'text'">Text View Content</div>
+    <div *ngSwitchDefault>Otherwise</div>
+</div>
+
+<!-- DIRECTIVES: ngFor -->
+<!-- https://angular.io/api/common/NgForOf -->
+<br/>
+<br/>
+<ul>
+    <li *ngFor="let player of players; index as i;even as isEven">
+        {{i}} - {{ player.name }} <span *ngIf="isEven">(EVEN)</span>
+        <button (click)="onRemove(player)">Remove</button>
+        <button (click)="onChange(player)">Update</button>
+    </li>
+</ul>
+
+<br/>
+<br/>
+
+<!-- handling change detection -->
+<button (click)="onAdd()">Add</button>
+<br/>
+<br/>
+<!-- calling the data from the server and checking the performance -->
+<button (click)="loadCandies()">Load Data for Candies</button>
+<ul>
+    <li *ngFor="let candy of candies; index as j;trackBy: trackCandies">
+        {{j}} - {{candy.name}}
+    </li>
+</ul>
+
+<br/>
+<br/>
+<button [ngStyle]="{
+    'background': canSave? 'blue':'gray',
+    'color':canSave? 'white': 'black'
+}">SAVE</button>
+
+
+<br/>
+<br/>
+<h2></h2>
+<span>{{ task.assignee?.name}}</span>
+
+
+<!--Custom Directive-->
+<br/>
+<br/>
+<input type="text" [appInputFormat]="'lowercase'">
